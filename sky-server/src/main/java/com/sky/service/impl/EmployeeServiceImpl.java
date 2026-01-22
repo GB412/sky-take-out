@@ -108,8 +108,30 @@ public class EmployeeServiceImpl implements EmployeeService {
         //SQL执行查询
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
         long total = page.getTotal();
-        List<Employee> records=page.getResult();
+        List<Employee> records = page.getResult();
         return new PageResult(total, records);
     }
+
+    /**
+     * 启动/禁用员工账号
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+    public void startorStop(Integer status, long id) {
+        // update employee set status = ? where id = ?
+
+        /* Employee employee = new Employee();
+        employee.setId(id);
+        employee.setStatus(status); */
+
+        Employee employee = Employee.builder()
+                .id(id)
+                .status(status)
+                .build();
+        employeeMapper.update(employee);
+    }
+
 
 }

@@ -64,7 +64,6 @@ public class EmployeeController {
 
     /**
      * 退出
-     *
      * @return
      */
     @PostMapping("/logout")
@@ -74,7 +73,6 @@ public class EmployeeController {
 
     /**
      * 新增员工
-     *
      * @param employeeDTO
      * @return
      */
@@ -87,6 +85,11 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 员工分页查询
+     * @param employeePageQueryDTO
+     * @return
+     */
     @GetMapping("/page")
     @ApiOperation("员工分页查询")
     public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
@@ -94,4 +97,20 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * 启动/禁用员工账号
+     *  @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启动/禁用员工账号")
+    public Result startorStop(@PathVariable Integer status,long id) {
+        log.info("启动/禁用员工账号，参数为：{},{}", status,id);
+        employeeService.startorStop(status,id);
+        return Result.success();
+
+    }
+
 }
