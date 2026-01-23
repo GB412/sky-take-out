@@ -83,12 +83,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(DigestUtils.md5DigestAsHex("PasswordConstant.DEFAULT_PASSWORD".getBytes()));
 
         //设置创建时间和修改时间
-        employee.setCreateTime(java.time.LocalDateTime.now());
-        employee.setUpdateTime(java.time.LocalDateTime.now());
+        //employee.setCreateTime(java.time.LocalDateTime.now());
+        //employee.setUpdateTime(java.time.LocalDateTime.now());
 
         //设置创建人id和修改人id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        //employee.setCreateUser(BaseContext.getCurrentId());
+        //employee.setUpdateUser(BaseContext.getCurrentId());
 
         //调用持久层注入数据到数据库
         employeeMapper.insert(employee);
@@ -154,8 +154,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
 
-        employee.setUpdateTime(java.time.LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        //employee.setUpdateTime(java.time.LocalDateTime.now());
+        //employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
 
